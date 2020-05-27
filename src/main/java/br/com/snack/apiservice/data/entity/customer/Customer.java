@@ -14,8 +14,10 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -50,4 +52,10 @@ public class Customer {
     @Column(nullable = false)
     @LastModifiedDate
     private LocalDateTime updatedAt;
+
+    @OneToMany
+    private List<CustomerPhone> phones;
+
+    @OneToMany
+    private List<CustomerAddress> addresses;
 }
