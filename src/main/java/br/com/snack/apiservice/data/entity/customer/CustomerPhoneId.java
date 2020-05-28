@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
 
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
@@ -18,11 +20,13 @@ import java.io.Serializable;
 public class CustomerPhoneId implements Serializable {
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @LazyToOne(LazyToOneOption.NO_PROXY)
+    @JoinColumn(nullable = false, updatable = false)
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @LazyToOne(LazyToOneOption.NO_PROXY)
+    @JoinColumn(nullable = false, updatable = false)
     private Phone phone;
 
 }

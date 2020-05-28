@@ -1,4 +1,4 @@
-package br.com.snack.apiservice.data.dto;
+package br.com.snack.apiservice.data.dto.customer;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

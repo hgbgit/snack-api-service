@@ -1,4 +1,4 @@
-package br.com.snack.apiservice.data.dto;
+package br.com.snack.apiservice.data.dto.order;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -12,39 +12,29 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.math.BigDecimal;
+import java.util.UUID;
 
 @Getter
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@Builder(builderClassName = "AddressRequestBuilder", toBuilder = true)
-@JsonDeserialize(builder = AddressRequest.AddressRequestBuilder.class)
+@Builder(builderClassName = "OrderSnackResponseBuilder", toBuilder = true)
+@JsonDeserialize(builder = OrderSnackExtraIngredientResponse.OrderSnackResponseBuilder.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AddressRequest {
+public class OrderSnackExtraIngredientResponse {
 
-    @NotNull
-    @Size(min = 5)
-    private final String rua;
+    private final UUID id;
 
-    @NotNull
-    private final Long numero;
+    private final String adicional;
 
-    @NotNull
-    private final String cep;
+    private final Integer quantidade;
 
-    @NotNull
-    private final String cidade;
-
-    @NotNull
-    private final String estado;
-
-    private final String complemento;
+    private BigDecimal valor;
 
     @JsonPOJOBuilder(withPrefix = "")
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class AddressRequestBuilder {
+    public static class OrderSnackResponseBuilder {
 
     }
 }

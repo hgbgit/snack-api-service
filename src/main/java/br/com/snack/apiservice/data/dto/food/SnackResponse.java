@@ -1,9 +1,8 @@
-package br.com.snack.apiservice.data.dto;
+package br.com.snack.apiservice.data.dto.food;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.AccessLevel;
@@ -13,30 +12,27 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@Builder(builderClassName = "PhoneResponseBuilder", toBuilder = true)
-@JsonDeserialize(builder = PhoneResponse.PhoneResponseBuilder.class)
+@Builder(builderClassName = "SnackResponseBuilder", toBuilder = true)
+@JsonDeserialize(builder = SnackResponse.SnackResponseBuilder.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class PhoneResponse {
+public class SnackResponse {
 
-    private UUID id;
+    private final UUID id;
 
-    @JsonProperty("cod_internacional")
-    private String codigoPais;
+    private final String nome;
 
-    @JsonProperty("cod_area")
-    private Integer coidgoArea;
-
-    private Long numero;
+    private final List<IngredientResponse> ingredientes;
 
     @JsonPOJOBuilder(withPrefix = "")
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class PhoneResponseBuilder {
+    public static class SnackResponseBuilder {
 
     }
 }

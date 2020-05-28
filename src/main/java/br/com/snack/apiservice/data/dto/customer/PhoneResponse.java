@@ -1,10 +1,10 @@
-package br.com.snack.apiservice.data.dto;
+package br.com.snack.apiservice.data.dto.customer;
 
 
-import br.com.snack.apiservice.data.entity.order.OrderSnackExtraIngredient;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.AccessLevel;
@@ -14,28 +14,29 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.math.BigDecimal;
-import java.time.ZonedDateTime;
-import java.util.UUID;
-
 @Getter
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@Builder(builderClassName = "OrderSnackResponseBuilder", toBuilder = true)
-@JsonDeserialize(builder = OrderSnackResponse.OrderSnackResponseBuilder.class)
+@Builder(builderClassName = "PhoneResponseBuilder", toBuilder = true)
+@JsonDeserialize(builder = PhoneResponse.PhoneResponseBuilder.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class OrderSnackResponse {
+@JsonPropertyOrder({"codigoPais", "codigoArea", "numero", "padrao"})
+public class PhoneResponse {
 
-    private final UUID id;
+    @JsonProperty("cod_internacional")
+    private String codigoPais;
 
-    private final SnackResponse lanche;
+    @JsonProperty("cod_area")
+    private Integer codigoArea;
 
-    private final List<OrderSnackExtraIngredientResponse> adicionais;
+    private Long numero;
+
+    private boolean padrao;
 
     @JsonPOJOBuilder(withPrefix = "")
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class OrderSnackResponseBuilder {
+    public static class PhoneResponseBuilder {
 
     }
 }

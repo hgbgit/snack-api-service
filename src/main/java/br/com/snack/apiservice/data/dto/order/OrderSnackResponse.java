@@ -1,9 +1,9 @@
-package br.com.snack.apiservice.data.dto;
+package br.com.snack.apiservice.data.dto.order;
 
 
+import br.com.snack.apiservice.data.dto.food.SnackResponse;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.AccessLevel;
@@ -13,26 +13,27 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.math.BigDecimal;
-import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@Builder(builderClassName = "SnackResponseBuilder", toBuilder = true)
-@JsonDeserialize(builder = SnackResponse.SnackResponseBuilder.class)
+@Builder(builderClassName = "OrderSnackResponseBuilder", toBuilder = true)
+@JsonDeserialize(builder = OrderSnackResponse.OrderSnackResponseBuilder.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SnackResponse {
+public class OrderSnackResponse {
 
     private final UUID id;
 
-    private final String nome;
+    private final SnackResponse lanche;
+
+    private final List<OrderSnackExtraIngredientResponse> adicionais;
 
     @JsonPOJOBuilder(withPrefix = "")
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class SnackResponseBuilder {
+    public static class OrderSnackResponseBuilder {
 
     }
 }

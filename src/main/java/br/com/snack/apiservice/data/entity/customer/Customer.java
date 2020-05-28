@@ -47,15 +47,15 @@ public class Customer {
 
     @Column(nullable = false)
     @CreatedDate
-    private LocalDateTime cretedAt;
+    private LocalDateTime createdAt;
 
     @Column(nullable = false)
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
-    @OneToMany
+    @OneToMany(mappedBy = "id.customer")
     private List<CustomerPhone> phones;
 
-    @OneToMany
+    @OneToMany(mappedBy = "id.customer")
     private List<CustomerAddress> addresses;
 }

@@ -1,20 +1,21 @@
 package br.com.snack.apiservice.data.entity.order;
 
 
-import br.com.snack.apiservice.data.entity.customer.Address;
-import br.com.snack.apiservice.data.entity.customer.Customer;
 import br.com.snack.apiservice.data.entity.food.Snack;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.*;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -36,5 +37,11 @@ public class OrderSnack {
     @ManyToOne
     @JoinColumn(nullable = false)
     private Snack snack;
+
+    @Column(nullable = false)
+    private Integer amount;
+
+    @OneToMany
+    private Set<OrderSnackExtraIngredient> orderSnackExtraIngredients;
 
 }
