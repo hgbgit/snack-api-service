@@ -1,6 +1,8 @@
 package br.com.snack.apiservice.service.strategy;
 
+import br.com.snack.apiservice.data.dto.customer.AddressResponse;
 import br.com.snack.apiservice.data.dto.customer.CustomerResponse;
+import br.com.snack.apiservice.data.dto.customer.PhoneResponse;
 import br.com.snack.apiservice.data.entity.customer.Customer;
 import br.com.snack.apiservice.data.mapper.customer.CustomerMapper;
 import br.com.snack.apiservice.data.repository.CustomerRepository;
@@ -43,5 +45,23 @@ public class CustomerService {
                                               .orElseThrow(() -> new EntityNotFoundException(String.format("Customer[id= %s] nao encontrado.", id)));
 
         return customerMapper.targetToSource(customer, SAO_PAULO_TIME_ZONE);
+    }
+
+    @Transactional(readOnly = true)
+    public List<PhoneResponse> findAllPhonesByCustomer(UUID id) {
+        Customer customer = customerRepository.findById(id)
+                                              .orElseThrow(() -> new EntityNotFoundException(String.format("Customer[id= %s] nao encontrado.", id)));
+
+        return customerMapper.targetToSource(customer, SAO_PAULO_TIME_ZONE)
+                             .getTelefones();
+    }
+
+    @Transactional(readOnly = true)
+    public List<AddressResponse> findAllAdressesByCustomer(UUID id) {
+        Customer customer = customerRepository.findById(id)
+                                              .orElseThrow(() -> new EntityNotFoundException(String.format("Customer[id= %s] nao encontrado.", id)));
+
+        return customerMapper.targetToSource(customer, SAO_PAULO_TIME_ZONE)
+                             .getEnderecos();
     }
 }

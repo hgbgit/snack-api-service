@@ -1,6 +1,8 @@
 package br.com.snack.apiservice.api.customer;
 
+import br.com.snack.apiservice.data.dto.customer.AddressResponse;
 import br.com.snack.apiservice.data.dto.customer.CustomerResponse;
+import br.com.snack.apiservice.data.dto.customer.PhoneResponse;
 import br.com.snack.apiservice.service.strategy.CustomerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +39,18 @@ public class CustomerController {
     public CustomerResponse findById(@PathVariable UUID id) {
         logger.info("Received request for find customer by id: {}", id);
         return customerService.findById(id);
+    }
+
+    @GetMapping("/{id}/phones")
+    public List<PhoneResponse> listAllPhonesByCustomer(@PathVariable UUID id) {
+        logger.info("Received request for listing all customer id: {}, phones.", id);
+        return customerService.findAllPhonesByCustomer(id);
+    }
+
+    @GetMapping("/{id}/addresses")
+    public List<AddressResponse> listAllAddressesByCustomer(@PathVariable UUID id) {
+        logger.info("Received request for listing all customer id: {}, addresses.", id);
+        return customerService.findAllAdressesByCustomer(id);
     }
 
 }

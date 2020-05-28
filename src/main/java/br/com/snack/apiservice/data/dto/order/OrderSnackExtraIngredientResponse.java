@@ -12,6 +12,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.UUID;
 
@@ -31,6 +32,8 @@ public class OrderSnackExtraIngredientResponse {
     private final Integer quantidade;
 
     private BigDecimal valor;
+
+    private BigDecimal total;
 
     @JsonPOJOBuilder(withPrefix = "")
     @JsonIgnoreProperties(ignoreUnknown = true)

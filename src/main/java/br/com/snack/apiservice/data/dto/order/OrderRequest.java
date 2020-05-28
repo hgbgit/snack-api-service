@@ -15,6 +15,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -24,33 +25,17 @@ import java.util.UUID;
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@Builder(builderClassName = "OrderResponseBuilder", toBuilder = true)
-@JsonDeserialize(builder = OrderResponse.OrderResponseBuilder.class)
+@Builder(builderClassName = "OrderRequestBuilder", toBuilder = true)
+@JsonDeserialize(builder = OrderRequest.OrderRequestBuilder.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class OrderResponse {
+public class OrderRequest {
 
-    private final UUID id;
-
-    private final CustomerResponse cliente;
-
-    @JsonProperty("endereco_entrega")
-    private final AddressResponse enderecoEntrega;
-
-    private final String status;
-
-    private final BigDecimal total;
-
-    @JsonProperty("data_criacao")
-    private final ZonedDateTime data_criacao;
-
-    @JsonProperty("ultima_atualizacao")
-    private final ZonedDateTime ultimaAtualizacao;
-
-    private final List<OrderSnackResponse> items;
+    @NotNull
+    private final List<OrderSnackRequest> items;
 
     @JsonPOJOBuilder(withPrefix = "")
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class OrderResponseBuilder {
+    public static class OrderRequestBuilder {
 
     }
 }

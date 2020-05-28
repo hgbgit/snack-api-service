@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.math.BigDecimal;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,17 +22,17 @@ import java.util.UUID;
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder(builderClassName = "OrderSnackResponseBuilder", toBuilder = true)
-@JsonDeserialize(builder = OrderSnackResponse.OrderSnackResponseBuilder.class)
+@JsonDeserialize(builder = OrderSnackRequest.OrderSnackResponseBuilder.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class OrderSnackResponse {
+public class OrderSnackRequest {
 
-    private final UUID id;
+    @NotNull
+    private final UUID lanche;
 
-    private final SnackResponse lanche;
-
+    @NotNull
     private final Integer quantidade;
 
-    private final List<OrderSnackExtraIngredientResponse> adicionais;
+    private final List<OrderSnackExtraIngredientRequest> adicionais;
 
     @JsonPOJOBuilder(withPrefix = "")
     @JsonIgnoreProperties(ignoreUnknown = true)
