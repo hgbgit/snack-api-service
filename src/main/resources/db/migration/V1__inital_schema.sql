@@ -61,7 +61,7 @@ CREATE TABLE "customer_address"
 (
     "customer_id" uuid    NOT NULL,
     "address_id"  uuid    NOT NULL,
-    "default"     boolean NOT NULL DEFAULT 'false'
+    "is_default"  boolean NOT NULL DEFAULT 'false'
 );
 
 CREATE TABLE "order"
@@ -79,7 +79,7 @@ CREATE TABLE "customer_phone"
 (
     "customer_id" uuid    NOT NULL,
     "phone_id"    uuid    NOT NULL,
-    "default"     boolean NOT NULL DEFAULT 'false'
+    "is_default"  boolean NOT NULL DEFAULT 'false'
 );
 
 CREATE TABLE "order_snack"

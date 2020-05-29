@@ -1,4 +1,4 @@
-package br.com.snack.apiservice.service.strategy;
+package br.com.snack.apiservice.service;
 
 import br.com.snack.apiservice.data.dto.food.SnackResponse;
 import br.com.snack.apiservice.data.entity.food.Snack;

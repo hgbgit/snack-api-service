@@ -19,7 +19,7 @@ import java.util.UUID;
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@Builder(builderClassName = "OrderSnackExtraIngredientRequest", toBuilder = true)
+@Builder(builderClassName = "OrderSnackExtraIngredientRequestBuilder", toBuilder = true)
 @JsonDeserialize(builder = OrderSnackExtraIngredientRequest.OrderSnackExtraIngredientRequestBuilder.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderSnackExtraIngredientRequest {

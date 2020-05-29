@@ -13,6 +13,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.util.UUID;
+
 @Getter
 @ToString
 @EqualsAndHashCode
@@ -20,8 +22,10 @@ import lombok.ToString;
 @Builder(builderClassName = "AddressResponseBuilder", toBuilder = true)
 @JsonDeserialize(builder = AddressResponse.AddressResponseBuilder.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({"rua", "numero", "complemento", "cidade", "estado", "cep", "padrao"})
+@JsonPropertyOrder({"id", "rua", "numero", "complemento", "cidade", "estado", "cep", "padrao"})
 public class AddressResponse {
+
+    private final UUID id;
 
     private final String rua;
 

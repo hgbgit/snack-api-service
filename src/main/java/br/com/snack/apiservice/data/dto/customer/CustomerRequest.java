@@ -1,8 +1,9 @@
 package br.com.snack.apiservice.data.dto.customer;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.AccessLevel;
@@ -14,8 +15,8 @@ import lombok.ToString;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Getter
 @ToString
@@ -23,23 +24,24 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder(builderClassName = "CustomerRequestBuilder", toBuilder = true)
 @JsonDeserialize(builder = CustomerRequest.CustomerRequestBuilder.class)
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CustomerRequest {
 
     @NotNull(message = "O primeiro nome nao pode ser vazio.")
     @Size(min = 3, message = "O nome deve ter no mínimo 3 caracteres.")
+    @JsonProperty("primeiro_nome")
     private final String primeiroNome;
 
     @NotNull(message = "O sobrenome nao pode ser vazio.")
     @Size(min = 3, message = "O sobre nome deve ter no mínimo 3 caracteres.")
+    @JsonProperty("ultimo_nome")
     private final String ultimoNome;
 
     @NotNull(message = "O email nao pode ser vazio.")
     @Email(message = "O email deve ser valido.")
     private final String email;
 
-    @Pattern(regexp = "^\\d{2}/\\d{2}/\\d{4}$", message = "A data de aniversário deve estar no formato dd/MM/AAAA.")
-    private final String aniversario;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private final Date aniversario;
 
     @JsonPOJOBuilder(withPrefix = "")
     @JsonIgnoreProperties(ignoreUnknown = true)

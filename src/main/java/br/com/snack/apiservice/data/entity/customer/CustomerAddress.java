@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Column;
@@ -14,6 +15,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.Table;
 
 @Data
+@ToString(exclude = "id")
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -25,7 +27,7 @@ public class CustomerAddress {
     @EmbeddedId
     private CustomerAddressId id;
 
-    @Column(name = "default", nullable = false)
+    @Column(nullable = false)
     private Boolean isDefault;
 
 }

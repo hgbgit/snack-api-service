@@ -35,6 +35,7 @@ public class PhoneRequest {
     @NotNull
     private final Long numero;
 
+    private final Boolean padrao;
 
     @JsonPOJOBuilder(withPrefix = "")
     @JsonIgnoreProperties(ignoreUnknown = true)

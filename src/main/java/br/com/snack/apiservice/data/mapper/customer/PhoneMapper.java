@@ -19,5 +19,5 @@ public interface PhoneMapper {
     @Mapping(target = "codigoArea", source = "id.phone.areaCode")
     @Mapping(target = "numero", source = "id.phone.number")
     @Mapping(target = "padrao", source = "isDefault")
-    PhoneResponse sourceToTarget(CustomerPhone customerPhone);
+    PhoneResponse targetToSource(CustomerPhone customerPhone);
 }

@@ -17,8 +17,9 @@ public interface AddressMapper {
     @Mapping(target = "zipCode", source = "cep")
     @Mapping(target = "number", source = "numero")
     @Mapping(target = "complement", source = "complemento", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Address targetToSource(AddressRequest addressRequest);
+    Address sourceToTarget(AddressRequest addressRequest);
 
+    @Mapping(target = "id", source = "id.address.id")
     @Mapping(target = "rua", source = "id.address.street")
     @Mapping(target = "estado", source = "id.address.estate")
     @Mapping(target = "cidade", source = "id.address.city")
