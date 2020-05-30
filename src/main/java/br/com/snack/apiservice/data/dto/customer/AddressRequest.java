@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -30,7 +30,7 @@ public class AddressRequest {
     private final String rua;
 
     @NotNull
-    @DecimalMin(value = "1", message = "O número da rua deve ser maior que 1")
+    @Min(value = 1, message = "O número da rua deve ser maior que 1")
     private final Long numero;
 
     @NotNull

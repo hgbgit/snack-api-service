@@ -4,8 +4,12 @@ import br.com.snack.apiservice.data.entity.food.Snack;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.UUID;
 
 @Repository
 public interface SnackRepository extends JpaRepository<Snack, UUID> {
+
+    long countByIdIn(List<UUID> snackIds);
+
 }
