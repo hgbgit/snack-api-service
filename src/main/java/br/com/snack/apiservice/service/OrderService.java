@@ -167,7 +167,7 @@ public class OrderService {
                        .forEach(salesStrategy -> salesStrategy.applyDiscount(order));
         orderRepository.save(order);
 
-        //Padrao observer: acoplamento 0 com outros componentes, publicar em fila(SQS, Rabbit...), mandar e-mails, etc..
+        //Oberserver -> 0 acomplamento com filas, envios de notificaçoes, ou qq outra necessidade assincrona..
         eventPublisher.publishEvent(OrderCreationEvent.builder()
                                                       .order(order)
                                                       .build());

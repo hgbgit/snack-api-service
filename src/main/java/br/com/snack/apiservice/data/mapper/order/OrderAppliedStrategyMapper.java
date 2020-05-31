@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface OrderAppliedStrategyMapper {
 
-    @Mapping(target = "descricao", source = "description")
+    @Mapping(target = "descricao", source = "id.description")
     @Mapping(target = "valorDescontado", source = "discountValue")
     OrderAppliedStrategyResponse sourceToTarget(OrderAppliedStrategy orderAppliedStrategy);
 }

@@ -1,8 +1,8 @@
 package br.com.snack.apiservice.service.strategy;
 
-import br.com.snack.apiservice.data.entity.food.Ingredient;
 import br.com.snack.apiservice.data.entity.order.Order;
 import br.com.snack.apiservice.data.entity.order.OrderAppliedStrategy;
+import br.com.snack.apiservice.data.entity.order.OrderAppliedStrategyId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -27,10 +26,10 @@ public class LightSalesStrategy extends SalesStrategy {
 
     @Override
     public boolean hasFit(Order order) {
-        List<Ingredient> mustHaveSet = filterAllIngredients(order, MUST_HAVE);
-        List<Ingredient> mustNotHave = filterAllIngredients(order, MUST_NOT_HAVE);
+        Integer mustHave = discoverTargetIngredient(order, MUST_HAVE);
+        Integer mustNotHave = discoverTargetIngredient(order, MUST_NOT_HAVE);
 
-        return mustHaveSet.size() >= 1 && mustNotHave.size() == 0;
+        return mustHave >= 1 && mustNotHave == 0;
     }
 
     @Override
@@ -40,10 +39,8 @@ public class LightSalesStrategy extends SalesStrategy {
                                                 .setScale(2, RoundingMode.HALF_UP);
 
         order.setTotalPaid(orderWithDiscount);
-        OrderAppliedStrategy orderAppliedStrategy = new OrderAppliedStrategy();
-        orderAppliedStrategy.setDescription(this.getDescription());
-        orderAppliedStrategy.setOrder(order);
-        orderAppliedStrategy.setDiscountValue(totalPaid.subtract(orderWithDiscount));
+        OrderAppliedStrategyId orderAppliedStrategyId = new OrderAppliedStrategyId(order, this.getDescription());
+        OrderAppliedStrategy orderAppliedStrategy = new OrderAppliedStrategy(orderAppliedStrategyId, totalPaid.subtract(orderWithDiscount));
 
         Set<OrderAppliedStrategy> orderAppliedStrategies = Optional.ofNullable(order.getAppliedStrategies())
                                                                    .orElse(new HashSet<>());
