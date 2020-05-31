@@ -158,7 +158,7 @@ public class OrderService {
         order.setOrderSnacks(orderSnacks);
         orderRepository.save(order);
 
-        //Padrao observer: acoplamento 0 com outros componentes, publicar em fila, mandar e-mails, etc..
+        //Padrao observer: acoplamento 0 com outros componentes, publicar em fila(SQS, Rabbit...), mandar e-mails, etc..
         eventPublisher.publishEvent(OrderCreationEvent.builder()
                                                       .order(order)
                                                       .build());
