@@ -23,6 +23,7 @@ import br.com.snack.apiservice.exception.BadRequestException;
 import br.com.snack.apiservice.exception.EntityNotFoundException;
 import br.com.snack.apiservice.notification.event.OrderCreationEvent;
 import br.com.snack.apiservice.notification.event.OrderStatusEvent;
+import br.com.snack.apiservice.service.strategy.SalesStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,19 +56,22 @@ public class OrderService {
     private final CustomerAddressRepository customerAddressRepository;
     private final SnackRepository snackRepository;
     private final IngredientRepository ingredientRepository;
-    private final OrderMapper orderMapper;
 
+    private final OrderMapper orderMapper;
+    private final List<SalesStrategy> salesStrategies;
     private final ApplicationEventPublisher eventPublisher;
 
     @Autowired
     public OrderService(OrderRepository orderRepository, CustomerRepository customerRepository, CustomerAddressRepository customerAddressRepository,
-                        SnackRepository snackRepository, IngredientRepository ingredientRepository, OrderMapper orderMapper, ApplicationEventPublisher eventPublisher) {
+                        SnackRepository snackRepository, IngredientRepository ingredientRepository, OrderMapper orderMapper,
+                        List<SalesStrategy> salesStrategies, ApplicationEventPublisher eventPublisher) {
         this.orderRepository = orderRepository;
         this.customerRepository = customerRepository;
         this.customerAddressRepository = customerAddressRepository;
         this.snackRepository = snackRepository;
         this.ingredientRepository = ingredientRepository;
         this.orderMapper = orderMapper;
+        this.salesStrategies = salesStrategies;
         this.eventPublisher = eventPublisher;
     }
 
@@ -139,6 +143,7 @@ public class OrderService {
 
     @Transactional(propagation = Propagation.REQUIRED)
     public OrderResponse processOrder(Customer customer, CustomerAddress customerAddress, OrderRequest orderRequest) {
+
         Order order = new Order();
         order.setCustomer(customer);
         order.setAddress(customerAddress.getId()
@@ -156,6 +161,10 @@ public class OrderService {
 
         order.setTotalPaid(orderTotalValue);
         order.setOrderSnacks(orderSnacks);
+
+        salesStrategies.stream()
+                       .filter(s -> s.hasFit(order))
+                       .forEach(salesStrategy -> salesStrategy.applyDiscount(order));
         orderRepository.save(order);
 
         //Padrao observer: acoplamento 0 com outros componentes, publicar em fila(SQS, Rabbit...), mandar e-mails, etc..

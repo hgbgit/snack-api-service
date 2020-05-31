@@ -89,6 +89,13 @@ CREATE TABLE "order_snack_extra_ingredient"
     "amount"         integer NOT NULL
 );
 
+CREATE TABLE "order_applied_strategy"
+(
+    "order_id"       uuid           NOT NULL,
+    "discount_value" decimal(10, 2) NOT NULL,
+    "description"    varchar        NOT NULL
+);
+
 ALTER TABLE "snack_ingredient"
     ADD FOREIGN KEY ("ingredient_id") REFERENCES "ingredient" ("id");
 
@@ -125,6 +132,9 @@ ALTER TABLE "order_snack_extra_ingredient"
 ALTER TABLE "order_snack_extra_ingredient"
     ADD FOREIGN KEY ("ingredient_id") REFERENCES "ingredient" ("id");
 
+ALTER TABLE "order_applied_strategy"
+    ADD FOREIGN KEY ("order_id") REFERENCES "customer_order" ("id");
+
 CREATE UNIQUE INDEX ON "snack_ingredient" ("ingredient_id", "snack_id");
 
 CREATE UNIQUE INDEX ON "customer_address" ("customer_id", "address_id");
@@ -132,6 +142,8 @@ CREATE UNIQUE INDEX ON "customer_address" ("customer_id", "address_id");
 CREATE UNIQUE INDEX ON "customer_phone" ("customer_id", "phone_id");
 
 CREATE UNIQUE INDEX ON "order_snack_extra_ingredient" ("order_snack_id", "ingredient_id");
+
+CREATE UNIQUE INDEX ON "order_applied_strategy" ("order_id", "description");
 
 COMMENT ON COLUMN "ingredient"."value" IS 'In BRL';
 

@@ -50,6 +50,8 @@ public class OrderResponse {
 
     private final List<OrderSnackResponse> items;
 
+    private final List<OrderAppliedStrategyResponse> promocoes;
+
     @JsonPOJOBuilder(withPrefix = "")
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class OrderResponseBuilder {

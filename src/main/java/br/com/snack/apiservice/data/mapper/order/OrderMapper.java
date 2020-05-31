@@ -11,7 +11,7 @@ import org.mapstruct.Mapping;
 
 import java.util.TimeZone;
 
-@Mapper(componentModel = "spring", uses = {OrderSnackMapper.class, AddressMapper.class, CustomerMapper.class, DateMapper.class})
+@Mapper(componentModel = "spring", uses = {OrderSnackMapper.class, AddressMapper.class, CustomerMapper.class, OrderAppliedStrategyMapper.class, DateMapper.class})
 public interface OrderMapper {
 
     @Mapping(target = "cliente", source = "customer")
@@ -20,5 +20,6 @@ public interface OrderMapper {
     @Mapping(target = "dataCriacao", source = "createdAt")
     @Mapping(target = "ultimaAtualizacao", source = "updatedAt")
     @Mapping(target = "items", source = "orderSnacks")
+    @Mapping(target = "promocoes", source = "appliedStrategies")
     OrderResponse sourceToTarget(Order order, @Context TimeZone timeZone);
 }

@@ -1,8 +1,9 @@
-package br.com.snack.apiservice.data.dto.food;
+package br.com.snack.apiservice.data.dto.order;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.AccessLevel;
@@ -13,28 +14,24 @@ import lombok.Getter;
 import lombok.ToString;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 @Getter
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@Builder(builderClassName = "SnackResponseBuilder", toBuilder = true)
-@JsonDeserialize(builder = IngredientResponse.SnackResponseBuilder.class)
+@Builder(builderClassName = "OrderAppliedStrategyResponseBuilder", toBuilder = true)
+@JsonDeserialize(builder = OrderAppliedStrategyResponse.OrderAppliedStrategyResponseBuilder.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class IngredientResponse {
+public class OrderAppliedStrategyResponse {
 
-    private final UUID id;
+    private final String descricao;
 
-    private final String nome;
-
-    private final Integer quantidade;
-
-    private final BigDecimal valor;
+    @JsonProperty("desconto")
+    private final BigDecimal valorDescontado;
 
     @JsonPOJOBuilder(withPrefix = "")
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class SnackResponseBuilder {
+    public static class OrderAppliedStrategyResponseBuilder {
 
     }
 }

@@ -11,5 +11,6 @@ public interface SnackIngredientMapper {
     @Mapping(target = "nome", source = "id.ingredient.name")
     @Mapping(target = "valor", source = "id.ingredient.value")
     @Mapping(target = "id", source = "id.ingredient.id")
+    @Mapping(target = "quantidade", source = "amount")
     IngredientResponse sourceToTarget(SnackIngredient snackIngredient);
 }
