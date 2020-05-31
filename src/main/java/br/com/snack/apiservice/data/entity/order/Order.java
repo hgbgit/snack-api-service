@@ -6,7 +6,9 @@ import br.com.snack.apiservice.data.entity.customer.Customer;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -20,10 +22,12 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(exclude = "orderSnacks")
+@ToString(exclude = "orderSnacks")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @EntityListeners(AuditingEntityListener.class)
 @Entity
-@Table
+@Table(name = "customer_order")
 public class Order {
 
     @Id
@@ -47,12 +51,12 @@ public class Order {
 
     @Column(nullable = false)
     @CreatedDate
-    private LocalDateTime cretedAt;
+    private LocalDateTime createdAt;
 
     @Column(nullable = false)
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
-    @OneToMany
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
     private Set<OrderSnack> orderSnacks;
 }

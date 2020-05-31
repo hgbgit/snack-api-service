@@ -28,4 +28,13 @@ public interface AddressMapper {
     @Mapping(target = "complemento", source = "id.address.complement", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "padrao", source = "isDefault")
     AddressResponse sourceToTarget(CustomerAddress customerAddress);
+
+    @Mapping(target = "rua", source = "street")
+    @Mapping(target = "estado", source = "estate")
+    @Mapping(target = "cidade", source = "city")
+    @Mapping(target = "cep", source = "zipCode")
+    @Mapping(target = "numero", source = "number")
+    @Mapping(target = "complemento", source = "complement", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    AddressResponse sourceToTarget(Address address);
+
 }

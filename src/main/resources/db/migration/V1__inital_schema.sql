@@ -1,12 +1,3 @@
-CREATE TYPE "order_status" AS ENUM (
-    'CREATING',
-    'CREATED',
-    'CANCELLED',
-    'PREPARING',
-    'DELIVERYING',
-    'DELIVERED'
-    );
-
 CREATE TABLE "ingredient"
 (
     "id"    uuid PRIMARY KEY,
@@ -64,13 +55,13 @@ CREATE TABLE "customer_address"
     "is_default"  boolean NOT NULL DEFAULT 'false'
 );
 
-CREATE TABLE "order"
+CREATE TABLE "customer_order"
 (
     "id"          uuid PRIMARY KEY,
     "customer_id" uuid                     NOT NULL,
     "address_id"  uuid                     NOT NULL,
     "total_paid"  decimal(10, 2)           NOT NULL,
-    "status"      order_status             NOT NULL,
+    "status"      varchar                  NOT NULL,
     "created_at"  timestamp with time zone NOT NULL,
     "updated_at"  timestamp with time zone NOT NULL
 );
@@ -85,9 +76,10 @@ CREATE TABLE "customer_phone"
 CREATE TABLE "order_snack"
 (
     "id"       uuid PRIMARY KEY,
-    "order_id" uuid    NOT NULL,
-    "snack_id" uuid    NOT NULL,
-    "amount"   integer NOT NULL
+    "order_id" uuid           NOT NULL,
+    "snack_id" uuid           NOT NULL,
+    "amount"   integer        NOT NULL,
+    "value"    decimal(10, 2) not null
 );
 
 CREATE TABLE "order_snack_extra_ingredient"
@@ -109,10 +101,10 @@ ALTER TABLE "customer_address"
 ALTER TABLE "customer_address"
     ADD FOREIGN KEY ("address_id") REFERENCES "address" ("id");
 
-ALTER TABLE "order"
+ALTER TABLE "customer_order"
     ADD FOREIGN KEY ("customer_id") REFERENCES "customer" ("id");
 
-ALTER TABLE "order"
+ALTER TABLE "customer_order"
     ADD FOREIGN KEY ("address_id") REFERENCES "address" ("id");
 
 ALTER TABLE "customer_phone"
@@ -122,7 +114,7 @@ ALTER TABLE "customer_phone"
     ADD FOREIGN KEY ("phone_id") REFERENCES "phone" ("id");
 
 ALTER TABLE "order_snack"
-    ADD FOREIGN KEY ("order_id") REFERENCES "order" ("id");
+    ADD FOREIGN KEY ("order_id") REFERENCES "customer_order" ("id");
 
 ALTER TABLE "order_snack"
     ADD FOREIGN KEY ("snack_id") REFERENCES "snack" ("id");
@@ -179,6 +171,8 @@ insert into snack (id, name)
 values ('02cf5439-5ded-4a55-a7bb-4b391ec975dd', 'X-Egg');
 insert into snack (id, name)
 values ('9e7d96d6-4060-460b-bdbd-ad74696a8a05', 'X-Egg Bacon');
+insert into snack (id, name)
+values ('5338b61c-16c2-4ec1-af8f-72a3333443eb', 'Lanche Personalizado');
 
 -- X-Bacon composition
 insert into snack_ingredient(ingredient_id, snack_id, amount)

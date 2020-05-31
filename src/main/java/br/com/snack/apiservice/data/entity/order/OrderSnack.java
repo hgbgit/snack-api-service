@@ -5,22 +5,20 @@ import br.com.snack.apiservice.data.entity.food.Snack;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Set;
 import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = "order")
+@EqualsAndHashCode(exclude = "order")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Table
@@ -41,7 +39,10 @@ public class OrderSnack {
     @Column(nullable = false)
     private Integer amount;
 
-    @OneToMany
+    @Column(nullable = false)
+    private BigDecimal value;
+
+    @OneToMany(mappedBy = "id.orderSnack", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
     private Set<OrderSnackExtraIngredient> orderSnackExtraIngredients;
 
 }

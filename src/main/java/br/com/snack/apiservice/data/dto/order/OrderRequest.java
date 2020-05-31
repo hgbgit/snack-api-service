@@ -1,11 +1,8 @@
 package br.com.snack.apiservice.data.dto.order;
 
 
-import br.com.snack.apiservice.data.dto.customer.AddressResponse;
-import br.com.snack.apiservice.data.dto.customer.CustomerResponse;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.AccessLevel;
@@ -16,10 +13,8 @@ import lombok.Getter;
 import lombok.ToString;
 
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
-import java.time.ZonedDateTime;
+import javax.validation.constraints.Size;
 import java.util.List;
-import java.util.UUID;
 
 @Getter
 @ToString
@@ -31,6 +26,7 @@ import java.util.UUID;
 public class OrderRequest {
 
     @NotNull
+    @Size(min = 1)
     private final List<OrderSnackRequest> items;
 
     @JsonPOJOBuilder(withPrefix = "")

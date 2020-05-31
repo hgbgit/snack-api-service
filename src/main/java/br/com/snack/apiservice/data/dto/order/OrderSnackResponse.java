@@ -15,7 +15,6 @@ import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.UUID;
 
 @Getter
 @ToString
@@ -26,11 +25,11 @@ import java.util.UUID;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderSnackResponse {
 
-    private final UUID id;
-
     private final SnackResponse lanche;
 
     private final Integer quantidade;
+
+    private final BigDecimal valor;
 
     private final List<OrderSnackExtraIngredientResponse> adicionais;
 

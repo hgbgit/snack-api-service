@@ -6,6 +6,7 @@ import br.com.snack.apiservice.data.dto.customer.CustomerResponse;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.AccessLevel;
@@ -27,6 +28,7 @@ import java.util.UUID;
 @Builder(builderClassName = "OrderResponseBuilder", toBuilder = true)
 @JsonDeserialize(builder = OrderResponse.OrderResponseBuilder.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({"id", "items", "total", "enderecoEntrega", "cliente"})
 public class OrderResponse {
 
     private final UUID id;
@@ -41,7 +43,7 @@ public class OrderResponse {
     private final BigDecimal total;
 
     @JsonProperty("data_criacao")
-    private final ZonedDateTime data_criacao;
+    private final ZonedDateTime dataCriacao;
 
     @JsonProperty("ultima_atualizacao")
     private final ZonedDateTime ultimaAtualizacao;
