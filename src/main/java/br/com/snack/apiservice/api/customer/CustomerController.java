@@ -1,12 +1,12 @@
 package br.com.snack.apiservice.api.customer;
 
+import br.com.snack.apiservice.service.CustomerService;
 import br.com.snack.apiservice.data.dto.customer.AddressRequest;
 import br.com.snack.apiservice.data.dto.customer.AddressResponse;
 import br.com.snack.apiservice.data.dto.customer.CustomerRequest;
 import br.com.snack.apiservice.data.dto.customer.CustomerResponse;
 import br.com.snack.apiservice.data.dto.customer.PhoneRequest;
 import br.com.snack.apiservice.data.dto.customer.PhoneResponse;
-import br.com.snack.apiservice.service.CustomerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,8 @@
 package br.com.snack.apiservice.notification.listener;
 
 import br.com.snack.apiservice.data.entity.order.Order;
-import br.com.snack.apiservice.notification.event.OrderCreationEvent;
 import br.com.snack.apiservice.notification.event.OrderStatusEvent;
+import br.com.snack.apiservice.notification.event.OrderCreationEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.event.EventListener;

@@ -1,9 +1,9 @@
 package br.com.snack.apiservice.service.strategy;
 
 import br.com.snack.apiservice.data.entity.food.Ingredient;
+import br.com.snack.apiservice.data.entity.order.OrderAppliedStrategyId;
 import br.com.snack.apiservice.data.entity.order.Order;
 import br.com.snack.apiservice.data.entity.order.OrderAppliedStrategy;
-import br.com.snack.apiservice.data.entity.order.OrderAppliedStrategyId;
 import br.com.snack.apiservice.data.repository.IngredientRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

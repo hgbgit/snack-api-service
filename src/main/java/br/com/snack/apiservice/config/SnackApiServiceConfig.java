@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
@@ -17,6 +18,7 @@ import static com.fasterxml.jackson.core.JsonGenerator.Feature.WRITE_BIGDECIMAL_
 @Configuration
 @EnableJpaAuditing
 @EnableSpringDataWebSupport
+@Profile("!test")
 public class SnackApiServiceConfig {
 
     @PostConstruct

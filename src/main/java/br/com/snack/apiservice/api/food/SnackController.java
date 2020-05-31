@@ -1,7 +1,7 @@
 package br.com.snack.apiservice.api.food;
 
-import br.com.snack.apiservice.data.dto.food.SnackResponse;
 import br.com.snack.apiservice.service.SnackService;
+import br.com.snack.apiservice.data.dto.food.SnackResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

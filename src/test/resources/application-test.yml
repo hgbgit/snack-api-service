@@ -1,0 +1,17 @@
+spring:
+  autoconfigure.exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration,org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration,org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration
+  application:
+    name: nutri-api-service
+  datasource:
+    url: jdbc:postgresql://ANY_BARE_OUTLINE_HOST:5432/ANY_DATABASE?currentSchema=ANY_SCHEMA
+    username: ANY_USER
+    password: ANY_PASSWORD
+    platform: Posgresql
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    open-in-view: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 10

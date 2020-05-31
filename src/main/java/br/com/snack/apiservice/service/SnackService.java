@@ -1,10 +1,10 @@
 package br.com.snack.apiservice.service;
 
+import br.com.snack.apiservice.data.repository.SnackRepository;
+import br.com.snack.apiservice.exception.EntityNotFoundException;
 import br.com.snack.apiservice.data.dto.food.SnackResponse;
 import br.com.snack.apiservice.data.entity.food.Snack;
 import br.com.snack.apiservice.data.mapper.food.SnackMapper;
-import br.com.snack.apiservice.data.repository.SnackRepository;
-import br.com.snack.apiservice.exception.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
