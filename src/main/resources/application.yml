@@ -2,7 +2,7 @@ spring:
   application:
     name: nutri-api-service
   datasource:
-    url: jdbc:postgresql://${DATABASE_HOST:localhost}:5432/${DATABASE:postgres}?currentSchema=${DATABASE_SCHEMA:snack_api}
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${DATABASE:postgres}?currentSchema=${DATABASE_SCHEMA:snack_api}
     username: ${DATABASE_USER:postgres}
     password: ${DATABASE_PASSWD:mysecretpassword}
     platform: Posgresql
