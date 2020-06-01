@@ -1,0 +1,631 @@
+{
+	"info": {
+		"_postman_id": "b3696ce9-0855-44f6-b914-749bf18a8c8e",
+		"name": "Snack-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "food",
+			"item": [
+				{
+					"name": "List all snacks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/snacks/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"snacks",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List all Ingredients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ingredients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ingredients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find ingredient by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ingredients/f960c601-d460-4bd2-be5b-93b114d9118a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ingredients",
+								"f960c601-d460-4bd2-be5b-93b114d9118a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find snack by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/snacks/20d19704-07a8-483c-91f2-2567e52c9dd4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"snacks",
+								"20d19704-07a8-483c-91f2-2567e52c9dd4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "customer",
+			"item": [
+				{
+					"name": "List all customers",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customers/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customers/{{customer}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers",
+								"{{customer}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List all phones by customer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customers/{{customer}}/phones",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers",
+								"{{customer}}",
+								"phones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List all addresses by customer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customers/{{customer}}/addresses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers",
+								"{{customer}}",
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customers/search?nome=hugo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers",
+								"search"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "hugo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1bd095da-c22f-4355-a850-841c593c90ee",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"customer\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"primeiro_nome\": \"Ana Maria\",\n\t\"ultimo_nome\": \"Silveira\",\n\t\"email\": \"anamaria@gmail.com\",\n\t\"aniversario\": \"2001-02-01\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/customers/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create customer address",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5f096cb4-3c97-4a9e-851a-33c009fac3b9",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"address\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"rua\": \"Rua teste\",\n\t\"numero\": 1,\n\t\"cep\": \"04532-123\",\n\t\"cidade\": \"Sao Paulo\",\n\t\"estado\": \"SP\",\n\t\"complemento\": \"alskdjflakdjsflkasdjf\",\n\t\"padrao\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/customers/{{customer}}/addresses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers",
+								"{{customer}}",
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create customer phone",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d5b4f07-bb4a-4c2a-ac77-cb586142e263",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"cod_internacional\": \"+55\",\n\t\"cod_area\": 11,\n\t\"numero\": 998505894,\n\t\"padrao\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/customers/{{customer}}/phones",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers",
+								"{{customer}}",
+								"phones"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "order",
+			"item": [
+				{
+					"name": "Create a order for a customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"items\": [\n\t\t{\n\t\t\t\"lanche\": \"20d19704-07a8-483c-91f2-2567e52c9dd4\",\n\t\t\t\"quantidade\": 4\n\t\t}\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/orders/customers/{{customer}}/addresses/{{address}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								"customers",
+								"{{customer}}",
+								"addresses",
+								"{{address}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cria order para customer no endereco padrao",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"items\": [\n\t\t{\n\t\t\t\"lanche\": \"20d19704-07a8-483c-91f2-2567e52c9dd4\",\n\t\t\t\"quantidade\": 2,\n\t\t\t\"adicionais\": [\n\t\t\t\t{\n\t\t\t\t\t\"id\": \"22a5c95c-183b-4021-8774-4f7a2954cff6\",\n\t\t\t\t\t\"quantidade\": 2\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"id\" : \"4d79d3eb-ae97-40cc-8bd8-6ab3c2836bc7\",\n\t\t\t\t\t\"quantidade\": 3\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/orders/customers/{{customer}}/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								"customers",
+								"{{customer}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido personalizado",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"items\": [\n\t\t{\n\t\t\t\"lanche\": \"5338b61c-16c2-4ec1-af8f-72a3333443eb\",\n\t\t\t\"quantidade\": 2,\n\t\t\t\"adicionais\": [\n\t\t\t\t{\n\t\t\t\t\t\"id\": \"22a5c95c-183b-4021-8774-4f7a2954cff6\",\n\t\t\t\t\t\"quantidade\": 2\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"id\" : \"4d79d3eb-ae97-40cc-8bd8-6ab3c2836bc7\",\n\t\t\t\t\t\"quantidade\": 3\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"id\": \"d19a9e2f-a032-481f-af39-ab8b0be82737\",\n\t\t\t\t\t\"quantidade\": 2\n\t\t\t\t}\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"lanche\": \"20d19704-07a8-483c-91f2-2567e52c9dd4\",\n\t\t\t\"quantidade\": 4\n\t\t}\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/orders/customers/{{customer}}/addresses/{{address}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								"customers",
+								"{{customer}}",
+								"addresses",
+								"{{address}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a order for a customer com adicionais Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"items\": [\n\t\t{\n\t\t\t\"lanche\": \"20d19704-07a8-483c-91f2-2567e52c9dd4\",\n\t\t\t\"quantidade\": 2,\n\t\t\t\"adicionais\": [\n\t\t\t\t{\n\t\t\t\t\t\"id\": \"22a5c95c-183b-4021-8774-4f7a2954cff6\",\n\t\t\t\t\t\"quantidade\": 2\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"id\" : \"4d79d3eb-ae97-40cc-8bd8-6ab3c2836bc7\",\n\t\t\t\t\t\"quantidade\": 3\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/orders/customers/{{customer}}/addresses/{{address}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								"customers",
+								"{{customer}}",
+								"addresses",
+								"{{address}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a order for a customer com adicionais",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"items\": [\n\t\t{\n\t\t\t\"lanche\": \"20d19704-07a8-483c-91f2-2567e52c9dd4\",\n\t\t\t\"quantidade\": 2,\n\t\t\t\"adicionais\": [\n\t\t\t\t{\n\t\t\t\t\t\"id\": \"22a5c95c-183b-4021-8774-4f7a2954cff6\",\n\t\t\t\t\t\"quantidade\": 2\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"id\" : \"4d79d3eb-ae97-40cc-8bd8-6ab3c2836bc7\",\n\t\t\t\t\t\"quantidade\": 3\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/orders/customers/{{customer}}/addresses/{{address}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								"customers",
+								"{{customer}}",
+								"addresses",
+								"{{address}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List all orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/orders/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/orders/dd35e61b-ebf6-40a7-bdb6-55b609ea281c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								"dd35e61b-ebf6-40a7-bdb6-55b609ea281c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista orders by customer",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"items\": [\n\t\t{\n\t\t\t\"lanche\": \"20d19704-07a8-483c-91f2-2567e52c9dd4\",\n\t\t\t\"quantidade\": 2,\n\t\t\t\"adicionais\": [\n\t\t\t\t{\n\t\t\t\t\t\"id\": \"22a5c95c-183b-4021-8774-4f7a2954cff6\",\n\t\t\t\t\t\"quantidade\": 2\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"id\" : \"4d79d3eb-ae97-40cc-8bd8-6ab3c2836bc7\",\n\t\t\t\t\t\"quantidade\": 3\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/orders/customers/{{customer}}/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								"customers",
+								"{{customer}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update oder status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/orders/dd35e61b-ebf6-40a7-bdb6-55b609ea281c/status/PREPARING",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								"dd35e61b-ebf6-40a7-bdb6-55b609ea281c",
+								"status",
+								"PREPARING"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cria order para customer no endereco padrao, promoção hamburger",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"items\": [\n\t\t{\n\t\t\t\"lanche\": \"20d19704-07a8-483c-91f2-2567e52c9dd4\",\n\t\t\t\"quantidade\": 1,\n\t\t\t\"adicionais\": [\n\t\t\t\t{\n\t\t\t\t\t\"id\": \"d19a9e2f-a032-481f-af39-ab8b0be82737\",\n\t\t\t\t\t\"quantidade\": 2\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/orders/customers/{{customer}}/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								"customers",
+								"{{customer}}",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
