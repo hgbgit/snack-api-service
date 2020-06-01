@@ -3,10 +3,10 @@ package br.com.snack.apiservice.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
-public class BusinessException extends RuntimeException {
+@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+public class SystemException extends RuntimeException {
 
-    public BusinessException(String message) {
+    public SystemException(String message) {
         super(message);
     }
 }
