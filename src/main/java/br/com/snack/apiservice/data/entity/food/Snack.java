@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Set;
 import java.util.UUID;
 
@@ -22,7 +23,7 @@ import java.util.UUID;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Table
-public class Snack {
+public class Snack implements Serializable {
 
     @Id
     @GeneratedValue

@@ -1,0 +1,76 @@
+buildscript {
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+plugins {
+    id "org.springframework.boot" version "${springBootVersion}"
+    id "io.spring.dependency-management" version "1.0.8.RELEASE"
+    id "java"
+    id "idea"
+}
+
+apply plugin: "java"
+apply plugin: "idea"
+apply plugin: "org.springframework.boot"
+apply plugin: "io.spring.dependency-management"
+
+bootJar {
+    launchScript()
+}
+
+java {
+    withSourcesJar()
+}
+
+group = "br.com.snack"
+description = "api-service"
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+springBoot {
+    buildInfo()
+}
+
+dependencies {
+
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapStructVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    implementation "org.springframework.boot:spring-boot-starter-actuator"
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+    implementation "org.springframework.boot:spring-boot-starter-validation"
+    implementation "org.flywaydb:flyway-core:${flywayVersion}"
+    implementation "org.springframework.cloud:spring-cloud-starter-openfeign:${springCloudVersion}"
+    implementation "org.mapstruct:mapstruct:${mapStructVersion}"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.4.0"
+    implementation "org.postgresql:postgresql:${postgreSqlDriverVersion}"
+
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation "io.cucumber:cucumber-spring:${cucumberVersion}"
+    testImplementation "io.cucumber:cucumber-junit:${cucumberVersion}"
+    testImplementation "io.cucumber:cucumber-java:${cucumberVersion}"
+    testImplementation "org.projectlombok:lombok:${lombokVersion}"
+    testImplementation "org.apache.commons:commons-lang3:3.10"
+}
+
+
+
+

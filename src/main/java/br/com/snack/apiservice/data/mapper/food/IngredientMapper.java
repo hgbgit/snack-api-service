@@ -10,5 +10,6 @@ public interface IngredientMapper {
 
     @Mapping(target = "nome", source = "name")
     @Mapping(target = "valor", source = "value")
+    @Mapping(target = "quantidade", ignore = true)
     IngredientResponse sourceToTarget(Ingredient ingredient);
 }

@@ -1,11 +1,13 @@
 package br.com.snack.apiservice.service.strategy;
 
+import br.com.snack.apiservice.data.entity.food.Snack;
+import br.com.snack.apiservice.data.entity.food.SnackIngredient;
 import br.com.snack.apiservice.data.entity.order.Order;
 import br.com.snack.apiservice.data.entity.order.OrderSnack;
 import br.com.snack.apiservice.data.entity.order.OrderSnackExtraIngredient;
-import br.com.snack.apiservice.data.entity.food.Snack;
-import br.com.snack.apiservice.data.entity.food.SnackIngredient;
 
+import java.util.Collections;
+import java.util.Optional;
 import java.util.Set;
 
 public abstract class SalesStrategy {
@@ -32,7 +34,8 @@ public abstract class SalesStrategy {
 
         Integer filteredExtraIngredientCount = order.getOrderSnacks()
                                                     .stream()
-                                                    .map(OrderSnack::getOrderSnackExtraIngredients)
+                                                    .map(orderSnack -> Optional.ofNullable(orderSnack.getOrderSnackExtraIngredients())
+                                                                               .orElse(Collections.emptySet()))
                                                     .flatMap(Set::stream)
                                                     .filter(orderSnackExtraIngredient -> orderSnackExtraIngredient.getId()
                                                                                                                   .getIngredient()

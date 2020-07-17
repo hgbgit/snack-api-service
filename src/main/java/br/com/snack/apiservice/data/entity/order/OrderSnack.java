@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Set;
 import java.util.UUID;
@@ -22,7 +23,7 @@ import java.util.UUID;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Table
-public class OrderSnack {
+public class OrderSnack implements Serializable {
 
     @Id
     @GeneratedValue

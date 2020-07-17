@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
@@ -16,7 +17,7 @@ import javax.persistence.Table;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Table
-public class SnackIngredient {
+public class SnackIngredient implements Serializable {
 
     @EmbeddedId
     private SnackIngredientId id;

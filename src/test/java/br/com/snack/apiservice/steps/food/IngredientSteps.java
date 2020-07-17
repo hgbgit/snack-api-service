@@ -10,10 +10,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.spring.CucumberContextConfiguration;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -37,11 +37,11 @@ import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
 @SpringBootTest
 @ContextConfiguration(classes = {SnackApiServiceApplication.class})
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
+@CucumberContextConfiguration
 public class IngredientSteps {
 
     private final IngredientRepository ingredientRepository;
@@ -105,9 +105,9 @@ public class IngredientSteps {
                      .andExpect(status().is(status));
     }
 
-    @And("the service will reply this list of ingredients: {string}")
+    @Then("the service will reply this list of ingredients: {string}")
     public void theServiceWillReplyThisListOfIngredients(String json) throws Exception {
-        final TypeReference<List<IngredientResponse>> listTypeReference = new TypeReference<List<IngredientResponse>>() {
+        final TypeReference<List<IngredientResponse>> listTypeReference = new TypeReference<>() {
         };
 
         List<IngredientResponse> expectedResponse = objectMapper.readValue(json, listTypeReference);
@@ -121,7 +121,7 @@ public class IngredientSteps {
         Assert.assertEquals(expectedResponse, ingredientsListResponse);
     }
 
-    @And("the service will reply this ingredient: {string}")
+    @Then("the service will reply this ingredient: {string}")
     public void theServiceWillReplyThisIngredient(String json) throws Exception {
         IngredientResponse expectedResponse = objectMapper.readValue(json, IngredientResponse.class);
         MvcResult mvcResult = this.testData.getResultActions()
@@ -133,19 +133,19 @@ public class IngredientSteps {
         Assert.assertEquals(expectedResponse, ingredientResponse);
     }
 
-    @Given("the database is offline")
+    @Then("the database is offline")
     public void theDatabaseIsOffline() {
         given(this.ingredientRepository.findAll()).willThrow(SystemException.class);
         given(this.ingredientRepository.findById(any(UUID.class))).willThrow(SystemException.class);
     }
 
-    @And("the database will be called to list ingredients")
+    @Then("the database will be called to list ingredients")
     public void theDatabaseWillBeCalledToListIngredients() {
         then(this.ingredientRepository).should(atLeastOnce())
                                        .findAll();
     }
 
-    @And("the database is called to find ingredient id: {string}")
+    @Then("the database is called to find ingredient id: {string}")
     public void theDatabaseIsCalledToFindIngredientId(String ingredientId) {
         then(this.ingredientRepository).should(only())
                                        .findById(eq(UUID.fromString(ingredientId)));

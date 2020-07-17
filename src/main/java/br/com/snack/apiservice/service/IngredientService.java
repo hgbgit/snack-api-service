@@ -3,8 +3,8 @@ package br.com.snack.apiservice.service;
 import br.com.snack.apiservice.data.dto.food.IngredientResponse;
 import br.com.snack.apiservice.data.entity.food.Ingredient;
 import br.com.snack.apiservice.data.mapper.food.IngredientMapper;
-import br.com.snack.apiservice.exception.EntityNotFoundException;
 import br.com.snack.apiservice.data.repository.IngredientRepository;
+import br.com.snack.apiservice.exception.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,8 +20,8 @@ public class IngredientService {
     private final IngredientMapper ingredientMapper;
 
     @Autowired
-    public IngredientService(IngredientRepository IngredientRepository, IngredientMapper ingredientMapper) {
-        this.ingredientRepository = IngredientRepository;
+    public IngredientService(IngredientRepository ingredientRepository, IngredientMapper ingredientMapper) {
+        this.ingredientRepository = ingredientRepository;
         this.ingredientMapper = ingredientMapper;
     }
 

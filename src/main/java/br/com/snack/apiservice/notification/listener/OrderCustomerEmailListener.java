@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderCustomerEmailListener {
 
-    private final static Logger logger = LoggerFactory.getLogger(OrderCustomerEmailListener.class);
+    private static final Logger logger = LoggerFactory.getLogger(OrderCustomerEmailListener.class);
 
     @EventListener
     public void orderCreationListener(OrderCreationEvent orderCreationEvent) {

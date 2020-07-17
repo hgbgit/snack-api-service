@@ -16,7 +16,7 @@ import java.util.Set;
 @Component
 public class LightSalesStrategy extends SalesStrategy {
 
-    private static final Logger logger = LoggerFactory.getLogger(SalesStrategy.class);
+    private static final Logger logger = LoggerFactory.getLogger(LightSalesStrategy.class);
 
     private static final String MUST_HAVE = "alface";
 

@@ -17,6 +17,11 @@ public interface CustomerMapper {
     @Mapping(target = "firstName", source = "primeiroNome")
     @Mapping(target = "lastName", source = "ultimoNome")
     @Mapping(target = "birthDate", source = "aniversario", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true)
+    @Mapping(target = "phones", ignore = true)
+    @Mapping(target = "addresses", ignore = true)
     Customer sourceToTarget(CustomerRequest customerRequest);
 
     @Mapping(target = "aniversario", source = "birthDate", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

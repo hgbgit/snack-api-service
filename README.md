@@ -3,10 +3,13 @@ Uma api que permite pequenos empresários a criar um serviço de delivery.
 
 # Compilando e executando
 Para compilar, entrar na pasta raiz e:
-`mvn clean install`
+`./gradlew build`
 
 Para executar é necessário docker, docker-compose:
 `docker-compose up --build`
+
+Para depurar no inteliJ e usar apenas o postgresql Docker, execute o comando abaixo antes de iniciar a aplicacao:
+`docker run -e POSTGRES_PASSWORD=mysecretpassword --name postgres-local -d -p=5432:5432 postgres`
 
 ### Modelo de domínio da aplicação
 O modelo de domínio da aplicaçao foi desenhado de acordo com o requisitos enumerados e pode ser visto na imagem:

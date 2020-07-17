@@ -13,6 +13,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Data
 @ToString(exclude = "id")
@@ -22,7 +23,7 @@ import javax.persistence.Table;
 @EntityListeners(AuditingEntityListener.class)
 @Entity
 @Table
-public class CustomerAddress {
+public class CustomerAddress implements Serializable {
 
     @EmbeddedId
     private CustomerAddressId id;

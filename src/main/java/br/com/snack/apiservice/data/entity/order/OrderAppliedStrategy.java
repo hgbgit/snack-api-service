@@ -1,6 +1,5 @@
 package br.com.snack.apiservice.data.entity.order;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Getter
@@ -20,7 +20,7 @@ import java.math.BigDecimal;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Table
-public class OrderAppliedStrategy {
+public class OrderAppliedStrategy implements Serializable {
 
     @EmbeddedId
     private OrderAppliedStrategyId id;

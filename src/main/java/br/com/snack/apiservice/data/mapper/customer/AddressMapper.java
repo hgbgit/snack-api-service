@@ -17,6 +17,7 @@ public interface AddressMapper {
     @Mapping(target = "zipCode", source = "cep")
     @Mapping(target = "number", source = "numero")
     @Mapping(target = "complement", source = "complemento", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    @Mapping(target = "id", ignore = true)
     Address sourceToTarget(AddressRequest addressRequest);
 
     @Mapping(target = "id", source = "id.address.id")
@@ -35,6 +36,7 @@ public interface AddressMapper {
     @Mapping(target = "cep", source = "zipCode")
     @Mapping(target = "numero", source = "number")
     @Mapping(target = "complemento", source = "complement", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    @Mapping(target = "padrao", ignore = true)
     AddressResponse sourceToTarget(Address address);
 
 }

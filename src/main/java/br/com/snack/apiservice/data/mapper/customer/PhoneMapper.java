@@ -13,6 +13,7 @@ public interface PhoneMapper {
     @Mapping(target = "countryCode", source = "codigoPais")
     @Mapping(target = "areaCode", source = "codigoArea")
     @Mapping(target = "number", source = "numero")
+    @Mapping(target = "id", ignore = true)
     Phone sourceToTarget(PhoneRequest phoneRequest);
 
     @Mapping(target = "codigoPais", source = "id.phone.countryCode")
