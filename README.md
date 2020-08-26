@@ -24,6 +24,7 @@ Listar Adicionais disponíveis: `curl --location --request GET 'http://localhost
 
 Listar clientes: `curl --location --request GET 'http://localhost:8080/customers/'`
 
+
 Criar cliente: 
 ```
 curl --location --request POST 'http://localhost:8080/customers/' \
